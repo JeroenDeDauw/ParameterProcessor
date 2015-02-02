@@ -1,0 +1,47 @@
+{
+	"name": "jeroen/parameter-processor",
+	"type": "library",
+	"description": "",
+	"keywords": [
+	],
+	"homepage": "https://github.com/JeroenDeDauw/ParameterProcessor",
+	"license": "GPL-2.0+",
+	"authors": [
+		 {
+			 "name": "Jeroen De Dauw",
+			 "email": "jeroendedauw@gmail.com",
+			 "homepage": "http://jeroendedauw.com"
+		 }
+	],
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "~2.1",
+		"phpmd/phpmd": "~2.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"ParameterProcessor\\": "src/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.1.x-dev"
+		}
+	},
+	"scripts": {
+		"test": [
+			"composer validate --no-interaction",
+			"phpunit"
+		],
+		"cs": [
+			"vendor/bin/phpcs src/* tests/* --standard=phpcs.xml --extensions=php -sp",
+			"vendor/bin/phpmd src/ text phpmd.xml"
+		],
+		"ci": [
+			"composer test",
+			"composer cs"
+		]
+	}
+}

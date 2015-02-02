@@ -19,4 +19,11 @@ final class ParamSpec {
 	 */
 	public $type;
 
+	/**
+	 * @return boolean
+	 */
+	public function isList() {
+
+	}
+
 }

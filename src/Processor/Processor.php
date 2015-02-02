@@ -1,6 +1,6 @@
 <?php
 
-namespace ParameterProcessor;
+namespace ParameterProcessor\Processor;
 
 use ParameterProcessor\Param\ParamSpecList;
 use ParameterProcessor\Type\TypeHandlerList;
@@ -59,28 +59,33 @@ class Processor {
 		 * - are any valid usecases prevented by the isolation?
 		 */
 
+		$this->result = new ProcessingResult();
+
 		foreach ( $inputParams as $name => $value ) {
 			$this->processParam( $name, $value );
 		}
 
-		// for non found ones, either default or error
+		// TODO: for non found ones, either default or error
 
 		return $this->result;
 	}
 
 	private function processParam( $name, $value ) {
-		if ( true /* not in list */ ) {
-			// record error
-			return;
-		}
+		$this->result->addError( [
+			'errorCode' => 'unknown-param',
+			'errorMessage' => '',
+			'isFatal' => false,
+			'paramName' => $name,
+			'paramValue' => $value,
+		] );
 
-		$spec = $this->getSpecFor( $name );
-		$type = $this->getType( $spec->getTypeName() );
-
-		$parsedValue = $type->getParser()->parse( $value );
-		$type->getParser()->validate( $parsedValue );
-
-		$this->result->addParam( $name, $value, $parsedValue );
+//		$spec = $this->getSpecFor( $name );
+//		$type = $this->getType( $spec->getTypeName() );
+//
+//		$parsedValue = $type->getParser()->parse( $value );
+//		$type->getParser()->validate( $parsedValue );
+//
+//		$this->result->addParam( $name, $value, $parsedValue );
 	}
 
 }

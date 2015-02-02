@@ -8,8 +8,13 @@ namespace ParameterProcessor\Type;
  */
 final class TypeHandler {
 
-	public function __construct( ParamParser $parser, ParamValidator $validator ) {
+	private $parser;
 
+	private $validator;
+
+	public function __construct( ParamParser $parser, ParamValidator $validator ) {
+		$this->parser = $parser;
+		$this->validator = $validator;
 	}
 
 }
